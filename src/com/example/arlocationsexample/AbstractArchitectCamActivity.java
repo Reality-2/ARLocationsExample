@@ -56,6 +56,7 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
 
 		/* set AR-view for life-cycle notifications etc. */
 		this.architectView = (ArchitectView)this.findViewById( this.getArchitectViewId()  );
+		assert(architectView != null) : "architectView has not been instantiated correctly the thread will fail";
 
 		/* pass SDK key if you have one, this one is only valid for this package identifier and must not be used somewhere else */
 		final ArchitectConfig config = new ArchitectConfig("3gh6KtE+yYTuFYHqPahcfrM8Zmu7xzhhvlCqSI+jP9tdwS6wW2OCm0IjEtQclIH/r9vd01Ph6N/Gw62dbUSfVv24gJvd4C3ctSEflNr96YxebSDXMGD706Pxm68tezMKwzP+/Sc9gXXrg3tvFF9R74zQRy747Tqm/7jAIe0W/f1TYWx0ZWRfXyKOPNMqt1eLCnqH9nbx4bhlrRH7tN4G/wXBGseaFOwS0NP54khxB61AeYxQf7OEkwXEG/tBmEPXTJJFskwej/TZNCperVmC+QVcgM1UQ9I9NJj9AaF8wSMy81/7CVFM6tDnGg02qyQC7Uu9tegitX6AMzt94GpWzbQuHvlezl88rr2hNI1QDxXKeA2uFOQYQk3iCaRXg7PjXxKZh+fJwv8ys6mkIE4ZSk4l+OoxK0tWGk0dfoLl+J5/b7jGqO82AmjqxW5cmf3TbcjwxDcoye2uGzFTsFXusJn2p3mSJ+lI0ndUyHbz1sdKLxyCAaNr4xv0SgV2QBV331aH+iGbdAO2avSZwzYEBTMXJ2Vh8E+l/Qq99LakC0L9GhbwKoFBpK6iy8w7VGu5OwH46x6DOr018+DOPoyqc/y8ASiVMep/ut7DqzXRCOYQ/3qZmITviRH5d9u3ovjEnmom9sjry2FPys5VOa/3hTr8x+rJ7zadILNSDavOyp4=");
