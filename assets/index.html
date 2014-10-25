@@ -7,7 +7,7 @@
     <!--  basic meta information -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Type" content="application/json; charset=utf-8">
-    <meta content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" name="viewport">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes name="viewport">
     
     <title>My ARchitect World</title>
 
@@ -21,10 +21,9 @@
     <!-- jquery JS files -->
     <script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="jquery/jquery.mobile-1.3.2.min.js"></script>
-    
 
-    <!-- marker representation-->
-    <script src="js/marker.js"></script>    
+    <!-- Enemy representation-->
+    <script src="js/enemy.js"></script>    
 
     <!-- World logic-->
     <script type="text/javascript" src="js/multiplepois.js"></script>
@@ -34,18 +33,12 @@
      <div data-role="page" id="page1" style="background: none;" >
             
             <!-- MAIN PAGE CONTENT -->
-
+            <img vspace="75%" hspace="50%" id="crosshair" src="assets/crosshair.png" />
+            
             <!-- transparent footer-->
             <div data-role="footer" class="ui-bar" data-theme="f" data-position="fixed" style="text-align:center;">
-
-                <!-- small status-button -->
-                <a style="text-align:right;" id="popupInfoButton" href="#popupInfo" data-rel="popup" data-role="button" class="ui-icon-alt" data-inline="true" data-transition="pop" data-icon="alert" data-theme="e" data-iconpos="notext">Log</a> </p>
-
-                <!-- popup displayed when button clicked -->
-                <div data-role="popup" id="popupInfo" class="ui-content" data-theme="e" style="max-width:350px;">
-                  <p style="text-align:right;" id="status-message">Trying to find out where you are</p>
-                </div>
-                
+				<img style="float:center;" id="shotgun" src="assets/shotgun.png" />
+				<a style="text-align:right;" id="shotgun" href="#shotgun" data-rel="shotgun" data-role="button" class="shotgun"></a>
             </div>
 
         </div>
