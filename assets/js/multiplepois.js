@@ -4,6 +4,8 @@ var World = {
 	// true once data was fetched
 	initiallyLoadedData: false,
 
+	player: null,
+	
 	// different POI-Marker assets
 	enemyDrawableIdle: null,
 	enemyDrawableDead: null,
@@ -14,7 +16,7 @@ var World = {
 	// list of AR.GeoObjects that are currently shown in the scene / World
 	enemies: [],
 	portals: [],
-
+	
 	// called to inject new POI data
 	loadPortalsFromJsonData: function loadPortalsFromJsonDataFn(portalData) {
 
@@ -44,7 +46,7 @@ var World = {
 		World.enemyDrawableDead = new AR.ImageResource("assets/deadImp.png");
 		
 		// Every 5 seconds, spawn a new enemy at the portal location.
-		var spawnTimer = setInterval(function () {spawn()}, 5000);
+		var spawnTimer = setInterval(function () {spawn()}, 10000);
 		
 		function spawn() {
 			for (var currentPlaceNr = 0; currentPlaceNr < portalData.length; currentPlaceNr++) {
@@ -82,6 +84,7 @@ var World = {
 				"altitude": "100.0"
 			});
 		}
+		World.player = new Player();
 		World.loadPortalsFromJsonData(portalData);
 	},
 };

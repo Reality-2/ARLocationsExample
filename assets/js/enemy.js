@@ -11,7 +11,7 @@ function Enemy(enemyInfo) {
 	this.enemyDrawable = new AR.ImageDrawable(World.enemyDrawableIdle, 2, {
 		zOrder: 1,
 		opacity: 1.0,
-		onClick: Enemy.prototype.kill(this)
+		onClick: Player.prototype.attack(this)
 	});
 	
 	this.enemyObject = new AR.GeoObject(this.enemyLocation, {
@@ -27,9 +27,7 @@ Enemy.prototype.attackPlayer = function(enemy, player) {
 };
 
 Enemy.prototype.kill = function(enemy) {
-	return function() {
-		enemy.status = "dead";
-		enemy.enemyDrawable.imageResource = World.enemyDrawableDead;
-		enemy.enemyDrawable.height = 1;
-	}
+	enemy.status = "dead";
+	enemy.enemyDrawable.imageResource = World.enemyDrawableDead;
+	enemy.enemyDrawable.height = 1;
 };
