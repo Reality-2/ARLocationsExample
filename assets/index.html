@@ -24,7 +24,10 @@
 
     <!-- Enemy representation-->
     <script src="js/enemy.js"></script>    
-
+    
+    <!-- Portal representation -->
+	<script src="js/portal.js"></script>
+	
     <!-- World logic-->
     <script type="text/javascript" src="js/multiplepois.js"></script>
 </head>
@@ -32,13 +35,9 @@
     <body >
      <div data-role="page" id="page1" style="background: none;" >
             
-            <!-- MAIN PAGE CONTENT -->
-            <img vspace="75%" hspace="50%" id="crosshair" src="assets/crosshair.png" />
-            
             <!-- transparent footer-->
             <div data-role="footer" class="ui-bar" data-theme="f" data-position="fixed" style="text-align:center;">
-				<img style="float:center;" id="shotgun" src="assets/shotgun.png" />
-				<a style="text-align:right;" id="shotgun" href="#shotgun" data-rel="shotgun" data-role="button" class="shotgun"></a>
+				<input style="float:right; outline:none;" id="shotgun" type="image" src="assets/shotgun.png" />
             </div>
 
         </div>

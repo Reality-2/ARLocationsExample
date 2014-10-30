@@ -1,35 +1,35 @@
 function Enemy(enemyInfo) {
 	this.enemyInfo = enemyInfo;
+	this.status = "alive";
 	this.health = 10;
 	this.armor = 10;
 	this.speed = 10;
 	this.attack = 10;
 	
-	var enemyLocation = new AR.GeoLocation(enemyInfo.latitude, enemyInfo.longitude, enemyInfo.altitude);
+	this.enemyLocation = new AR.GeoLocation(enemyInfo.latitude, enemyInfo.longitude, enemyInfo.altitude);
 	
-	// create an AR.Label for the marker's description
-    this.statsLabel = new AR.Label(this.health.toString(), 0.8, {
-        zOrder: 2,
-        style: {
-            textColor: '#FFFFFF'
-        }
-    });
-	
-	this.enemyDrawableIdle = new AR.ImageDrawable(World.enemyDrawableIdle, 2, {
+	this.enemyDrawable = new AR.ImageDrawable(World.enemyDrawableIdle, 2, {
 		zOrder: 1,
 		opacity: 1.0,
+		onClick: Enemy.prototype.kill(this)
 	});
 	
-	this.enemyDrawableDead = new AR.ImageDrawable(World.enemyDrawableDead, 2, {
-		zOrder: 1,
-		opacity: 0.0,
-	});
-	
-	this.enemyObject = new AR.GeoObject(enemyLocation, {
+	this.enemyObject = new AR.GeoObject(this.enemyLocation, {
 		drawables: {
-			cam: [this.enemyDrawableIdle, this.enemyDrawableDead, this.statsLabel]
+			cam: this.enemyDrawable,
 		}
 	});
-	
 	return this;
-}
+};
+
+Enemy.prototype.attackPlayer = function(enemy, player) {
+	
+};
+
+Enemy.prototype.kill = function(enemy) {
+	return function() {
+		enemy.status = "dead";
+		enemy.enemyDrawable.imageResource = World.enemyDrawableDead;
+		enemy.enemyDrawable.height = 1;
+	}
+};
