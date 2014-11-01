@@ -19,15 +19,38 @@ function Enemy(enemyInfo) {
 			cam: this.enemyDrawable,
 		}
 	});
-	return this;
-};
-
-Enemy.prototype.attackPlayer = function(enemy, player) {
 	
+	var anim = new AR.PropertyAnimation( 
+			this.enemyObject.locations[0],
+			"latitude",
+			null,
+			World.currLat,
+			10000
+	);
+	
+	var anim2 = new AR.PropertyAnimation( 
+			this.enemyObject.locations[0],
+			"longitude",
+			null,
+			World.currLong,
+			10000
+	);
+	
+	var q1 = new AR.AnimationGroup(AR.CONST.ANIMATION_GROUP_TYPE.PARALLEL, [anim, anim2]);
+	
+	q1.start(-1);
+	
+	console.assert(!(q1.isRunning()), "Animation running, assert true.")
+	
+	return this;
 };
 
 Enemy.prototype.kill = function(enemy) {
 	enemy.status = "dead";
 	enemy.enemyDrawable.imageResource = World.enemyDrawableDead;
 	enemy.enemyDrawable.height = 1;
+	setTimeout(function() {
+		enemy.enemyObject.enabled = false;
+	}, 1000);
+	console.assert((!(enemy.status == "dead") && !(enemy.enemyObject.enabled == false)), "Enemy is dead. Assert true.")
 };

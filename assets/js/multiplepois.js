@@ -10,6 +10,9 @@ var World = {
 	enemyDrawableIdle: null,
 	enemyDrawableDead: null,
 	
+	currLat: null,
+	currLong: null,
+	
 	// portal POI-Marker assets
 	portalDrawableIdle: null,
 
@@ -22,6 +25,7 @@ var World = {
 
 		// empty list of visible enemies
 		World.portals = [];
+		var originalNumPortals = World.portals.length;
 
 		// start loading marker assets
 		World.portalDrawableIdle = new AR.ImageResource("assets/space_time_portal.png");
@@ -36,33 +40,38 @@ var World = {
 			};
 			World.portals.push(new Portal(singlePortal));
 		}
+		console.assert((originalNumPortals >= World.portals.length), "Portal loaded, assert true");
 		World.loadEnemiesFromPortalData(portalData);
 	},
 	
 	loadEnemiesFromPortalData: function loadEnemiesFromPortalData(portalData) {
 		World.enemies = [];
-	
+		
 		World.enemyDrawableIdle = new AR.ImageResource("assets/imp.png");
 		World.enemyDrawableDead = new AR.ImageResource("assets/deadImp.png");
 		
 		// Every 5 seconds, spawn a new enemy at the portal location.
-		var spawnTimer = setInterval(function () {spawn()}, 10000);
+		var spawnTimer = setInterval(function () {spawn()}, 5000);
 		
 		function spawn() {
 			for (var currentPlaceNr = 0; currentPlaceNr < portalData.length; currentPlaceNr++) {
+				var originalNumEnemies = World.enemies.length;
 				var singleEnemy = {
 						"id": World.enemies.length + 1,
-						"latitude": parseFloat(portalData[currentPlaceNr].latitude + (Math.random() / 200 - 0.0025)),
-						"longitude": parseFloat(portalData[currentPlaceNr].longitude + (Math.random() / 200 - 0.0025)),
+						"latitude": parseFloat(portalData[currentPlaceNr].latitude + (Math.random() / 400 - 0.0025)),
+						"longitude": parseFloat(portalData[currentPlaceNr].longitude + (Math.random() / 400 - 0.0025)),
 						"altitude": parseFloat(portalData[currentPlaceNr].altitude),
 				};
 				World.enemies.push(new Enemy(singleEnemy));
+				console.assert((originalNumEnemies >= World.enemies.length), "Portal spawned enemy. Assert true.");
 			}
 		}
 	},
 
 	// location updates, fired every time you call architectView.setLocation() in native environment
 	locationChanged: function locationChangedFn(lat, lon, alt, acc) {
+		World.currLat = lat; 
+		World.currLong = lon;
 		
 		// request data if not already present
 		if (!World.initiallyLoadedData) {
@@ -79,8 +88,8 @@ var World = {
 		for (var i = 0; i < portalsToCreate; i++) {
 			portalData.push({
 				"id": (i + 1),
-				"longitude": (centerPointLongitude + (Math.random() / 200 - 0.0025)),
-				"latitude": (centerPointLatitude + (Math.random() / 200 - 0.0025)),
+				"longitude": (centerPointLongitude + (Math.random() / 100 - 0.005)),
+				"latitude": (centerPointLatitude + (Math.random() / 100 - 0.005)),
 				"altitude": "100.0"
 			});
 		}

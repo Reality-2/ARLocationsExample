@@ -12,7 +12,9 @@ function Player() {
 
 Player.prototype.attack = function(enemy) {
 	return function() {
+		var startHealth = enemy.health;
 		enemy.health = (enemy.health - World.player.damage);
+		console.assert((startHealth > enemy.health), "Enemy not attacked.");
 		if (enemy.health <= 0) {
 			enemy.kill(enemy);
 			return true;
