@@ -25,22 +25,19 @@ function Enemy(enemyInfo) {
 			"latitude",
 			null,
 			World.currLat,
-			10000
+			5000
 	);
-	
 	var anim2 = new AR.PropertyAnimation( 
 			this.enemyObject.locations[0],
 			"longitude",
 			null,
 			World.currLong,
-			10000
+			5000
 	);
-	
 	var q1 = new AR.AnimationGroup(AR.CONST.ANIMATION_GROUP_TYPE.PARALLEL, [anim, anim2]);
-	
 	q1.start(-1);
 	
-	console.assert(!(q1.isRunning()), "Animation running, assert true.")
+	console.assert(!(q1.isRunning()), "Animation running.")
 	
 	return this;
 };
@@ -52,5 +49,19 @@ Enemy.prototype.kill = function(enemy) {
 	setTimeout(function() {
 		enemy.enemyObject.enabled = false;
 	}, 1000);
-	console.assert((!(enemy.status == "dead") && !(enemy.enemyObject.enabled == false)), "Enemy is dead. Assert true.")
+	console.assert((!(enemy.status == "dead") && !(enemy.enemyObject.enabled == false)), "Enemy is dead.")
+};
+
+Enemy.prototype.attackPlayer = function(enemy) {
+	if (World.player.health > 0) {
+		if (enemy.enemyLocation.distanceToUser() < 100) {
+			World.player.health = World.player.health - enemy.attack;
+			$("#healthDisplay").html(World.player.health);
+		} else {
+			console.log("Enemy is not close enough!");
+		}
+	} else {
+		alert("Game Over!");
+		AR.context.destroyAll();
+	}
 };

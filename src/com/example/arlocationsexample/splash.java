@@ -11,8 +11,6 @@ public class splash extends Activity{
 	public void onCreate(Bundle b){
 		super.onCreate(b);
 		setContentView(R.layout.splash);
-		player = MediaPlayer.create(splash.this, R.raw.e1m1);
-		player.start();
         Thread mainTread = new Thread(){
         	public void run(){
         		try{
@@ -32,8 +30,6 @@ public class splash extends Activity{
 	
     public void onPause(){
     	super.onPause();
-    	player.release();
-    	assert(player.isPlaying()==false) : "music has not stopped playing";
     	finish();
     }
 }

@@ -26,13 +26,21 @@
     <script src="js/enemy.js"></script>    
 	<script src="js/portal.js"></script>
 	<script src="js/player.js"></script>
+	<script src="js/music.js"></script>
 	
     <!-- World logic-->
-    <script type="text/javascript" src="js/multiplepois.js"></script>
+    <script type="text/javascript" src="js/world.js"></script>
 </head>
     
     <body >
      <div data-role="page" id="page1" style="background: none;" >
+     
+            <div>
+            	<img src="assets/healthUI.png" alt="health" style="float:left;"><p style="color:red;" id="healthDisplay" />
+            </div>
+            <div>
+            	<img src="assets/ammoUI.png" alt="ammo" style="float:left;"><p id="ammoDisplay" />
+            </div>
             
             <!-- transparent footer-->
             <div data-role="footer" class="ui-bar" data-theme="f" data-position="fixed" style="text-align:center;">

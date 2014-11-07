@@ -11,9 +11,16 @@ function Portal(portalInfo) {
 		opacity: 1.0,
 	});
 	
+	this.distanceLabel = new AR.Label(this.portalLocation.distanceToUser(), 0.5, {
+		zOrder: 1,
+        style: {
+            textColor: '#FFFFFF'
+        }
+	});
+	
 	this.portalObject = new AR.GeoObject(this.portalLocation, {
 		drawables: {
-			cam: this.portalDrawable,
+			cam: [this.portalDrawable, this.distanceLabel],
 		}
 	});
 	return this;
