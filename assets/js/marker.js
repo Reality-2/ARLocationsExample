@@ -36,6 +36,8 @@ function Marker(poiData) {
     return this;
 }
 
+
+
 Marker.prototype.getOnClickTrigger = function(marker) {
 
     /*

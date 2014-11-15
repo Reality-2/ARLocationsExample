@@ -12,6 +12,15 @@ var World = {
 
 	// The last selected marker
 	currentMarker: null,
+	
+	//getnativedata
+	fromNative: function fromNative(level, health, armor, ammo){
+		var param1 = level + 1;
+		var param2 = health + 1;
+		var param3 = armor + 1;
+		var param4 = ammo + 1;
+		document.location = "architectsdk://runMethod?level="+param1+"&health="+param2+"&armor="+param3+"&ammo="+param4; 
+	},//end fromNative
 
 	// called to inject new POI data
 	loadPoisFromJsonData: function loadPoisFromJsonDataFn(poiData) {
