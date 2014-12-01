@@ -10,7 +10,6 @@ var World = {
 	// different POI-Marker assets
 	enemyDrawableIdle: null,
 	enemyDrawableDead: null,
-	enemyDrawableAttacking: null,
 	generatorDrawableAlive: null,
 	generatorDrawableDestroyed: null,
 	
@@ -61,7 +60,6 @@ var World = {
 		
 		World.enemyDrawableIdle = new AR.ImageResource("assets/imp.png");
 		World.enemyDrawableDead = new AR.ImageResource("assets/deadImp.png");
-		World.enemyDrawableAttacking = new AR.ImageResource("assets/impAttacking.png");
 		
 		var spawnTimer = setInterval(function () {spawn()}, (((Math.random() * 5) + 5) * 1000));
 		
