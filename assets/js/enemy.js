@@ -8,7 +8,7 @@ function Enemy(enemyInfo) {
 	
 	this.enemyLocation = new AR.GeoLocation(enemyInfo.latitude, enemyInfo.longitude, enemyInfo.altitude);
 	
-	this.enemyDrawable = new AR.AnimatedImageDrawable(World.enemyDrawableIdle, 2, 58, 62, {
+	this.enemyDrawable = new AR.AnimatedImageDrawable(World.enemyDrawableIdle, 2, 40, 60, {
 		zOrder: 1,
 		opacity: 1.0,
 		onClick: Player.prototype.attack(this)
@@ -57,23 +57,18 @@ Enemy.prototype.updateAnim = function(enemy) {
 
 Enemy.prototype.kill = function(enemy) {
 	enemy.status = "dead";
-	enemy.q1.stop();
 	enemy.enemyDrawable.imageResource = World.enemyDrawableDead;
-	enemy.enemyDrawable.animate([0, 1, 2, 3, 4], 150, 1);
+	enemy.q1.stop();
 	setTimeout(function() {
 		enemy.enemyObject.enabled = false;
 		Enemy.prototype.dropItem(enemy);
-	}, 2000);
+	}, 1000);
 	console.assert((!(enemy.status == "dead") && !(enemy.enemyObject.enabled == false)), "Enemy is dead.")
 };
 
 Enemy.prototype.attackPlayer = function(enemy) {
 	if (World.player.health > 0) {
 		if (enemy.enemyLocation.distanceToUser() < 50 && enemy.status == "alive") {
-			enemy.q1.stop();
-			enemy.enemyDrawable.imageResource = World.enemyDrawableAttacking;
-			enemy.enemyDrawable.animate([0, 1], 150, -1);
-			GruntSound.load();
 			World.player.health = World.player.health - enemy.attack;
 			$("#healthDisplay").html(World.player.health + " / " + World.player.healthCap);
 			console.log("Enemy is attacking!");
