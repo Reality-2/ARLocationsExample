@@ -10,6 +10,7 @@ var World = {
 	// different POI-Marker assets
 	enemyDrawableIdle: null,
 	enemyDrawableDead: null,
+	enemyDrawableAttacking: null,
 	generatorDrawableAlive: null,
 	generatorDrawableDestroyed: null,
 	
@@ -29,7 +30,7 @@ var World = {
 	// called to inject new POI data
 	loadPortalsFromJsonData: function loadPortalsFromJsonDataFn(portalData) {
 
-		// empty list of visible enemies
+		// empty list of portals
 		World.portals = [];
 		var originalNumPortals = World.portals.length;
 
@@ -55,11 +56,13 @@ var World = {
 		}
 	},
 	
+	// This method spawns enemies near the respective protal.
 	loadEnemiesFromPortalData: function loadEnemiesFromPortalData(portal, portalData) {
 		World.enemies = [];
 		
 		World.enemyDrawableIdle = new AR.ImageResource("assets/imp.png");
 		World.enemyDrawableDead = new AR.ImageResource("assets/deadImp.png");
+		World.enemyDrawableAttacking = new AR.ImageResource("assets/impAttacking.png");
 		
 		var spawnTimer = setInterval(function () {spawn()}, (((Math.random() * 5) + 5) * 1000));
 		
