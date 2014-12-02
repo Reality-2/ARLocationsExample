@@ -19,8 +19,8 @@ public class ARView extends AbstractArchitectCamActivity {
 	}
 
 	@Override
-	public int getContentViewId() {
-		return R.layout.activity_arview;
+	public int getContentViewId() { 		
+		return R.layout.activity_arview; 
 	}
 
 	@Override

@@ -7,7 +7,7 @@
     <!--  basic meta information -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Type" content="application/json; charset=utf-8">
-    <meta content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" name="viewport">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes name="viewport">
     
     <title>My ARchitect World</title>
 
@@ -21,31 +21,39 @@
     <!-- jquery JS files -->
     <script type="text/javascript" src="jquery/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="jquery/jquery.mobile-1.3.2.min.js"></script>
-    
 
-    <!-- marker representation-->
-    <script src="js/marker.js"></script>    
-
+    <!-- Classes representation-->
+    <script src="js/enemy.js"></script>    
+	<script src="js/portal.js"></script>
+	<script src="js/player.js"></script>
+	<script src="js/music.js"></script>
+	<script src="js/sounds.js"></script>
+	<script src="js/generator.js"></script>
+	<script src="js/item.js"></script>
+	
     <!-- World logic-->
-    <script type="text/javascript" src="js/multiplepois.js"></script>
+    <script type="text/javascript" src="js/world.js"></script>
 </head>
     
     <body >
      <div data-role="page" id="page1" style="background: none;" >
+     
+            <div>
+            	<img src="assets/healthUI.png" alt="health" style="float:left;">
+            	<p style="color:red;" id="healthDisplay" />
+            </div>
+            <div>
+            	<img src="assets/armorUI.png" alt="armor" style="float:left;">
+            	<p style="color:green;" id="armorDisplay" />
+            </div>
+            <div>
+            	<img src="assets/ammoUI.png" alt="ammo" style="float:left;">
+            	<p id="ammoDisplay" />
+            </div>
             
-            <!-- MAIN PAGE CONTENT -->
-
             <!-- transparent footer-->
             <div data-role="footer" class="ui-bar" data-theme="f" data-position="fixed" style="text-align:center;">
-
-                <!-- small status-button -->
-                <a style="text-align:right;" id="popupInfoButton" href="#popupInfo" data-rel="popup" data-role="button" class="ui-icon-alt" data-inline="true" data-transition="pop" data-icon="alert" data-theme="e" data-iconpos="notext">Log</a> </p>
-
-                <!-- popup displayed when button clicked -->
-                <div data-role="popup" id="popupInfo" class="ui-content" data-theme="e" style="max-width:350px;">
-                  <p style="text-align:right;" id="status-message">Trying to find out where you are</p>
-                </div>
-                
+				<img id="shotgun" src="assets/shotgunFired1.png" />
             </div>
 
         </div>
